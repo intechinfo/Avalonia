@@ -1,0 +1,12 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui">
+    <TreeView Items="{Binding}">
+        <TreeView.ItemTemplate>
+            <TreeDataTemplate ItemsSource="{Binding Children}">
+                <StackPanel Orientation="Horizontal" Spacing="4">
+                    <Ellipse Fill="{Binding Color}" Width="10" Height="10" Canvas.Left="88" Canvas.Top="100"/>
+                    <TextBlock Text="{Binding Name}"/>
+                </StackPanel>
+            </TreeDataTemplate>
+        </TreeView.ItemTemplate>
+    </TreeView>
+</UserControl>
