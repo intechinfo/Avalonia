@@ -1,5 +1,5 @@
 ﻿<UserControl xmlns="https://github.com/avaloniaui">
-    <TreeView Items="{Binding}">
+    <TreeView Items="{Binding Projects}" Name="TreeViewTests">
         <TreeView.ItemTemplate>
             <TreeDataTemplate ItemsSource="{Binding Children}">
                 <StackPanel Orientation="Horizontal" Spacing="4">

@@ -27,5 +27,35 @@ namespace ITI_UITest.Models
         }
         public IBrush Color => !IsPassed.HasValue ? BlackBrush: GetColor(IsPassed.Value);
         IBrush GetColor(bool value) => value ? GreenBrush : RedBruch;
+        public virtual string GetConsoleResult()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var child in Children)
+            {
+                string s = child.GetConsoleResult();
+                if (!string.IsNullOrEmpty(s))
+                    builder.AppendLine(s);
+            }
+            return builder.ToString();
+        }
+        public virtual string GetErrorsResult()
+        {
+            StringBuilder builder = new StringBuilder();
+            foreach (var child in Children)
+            {
+                string s = child.GetErrorsResult();
+                if(!string.IsNullOrEmpty(s))
+                    builder.AppendLine(s);
+            }
+            return builder.ToString();
+        }
+
+        public override string ToString()
+        {
+            if (Parent != null)
+                return $"{Parent.ToString()}/{Name}";
+            else
+                return Name;
+        }
     }
 }

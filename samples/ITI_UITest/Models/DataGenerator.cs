@@ -8,15 +8,12 @@ namespace ITI_UITest.Models
     public class DataGenerator
     {
         private static Random random = new Random();
-        public static List<TestProject> GenerateProjects()
+        public static List<TestProject> GenerateProject()
         {
             List<TestProject> projects = new List<TestProject>();
-            for (int i = 0; i < 4; i++)
-            {
-                TestProject p = new TestProject(RandomString(5));
-                p.SetChlidren(GenerateClasses(p));
-                projects.Add(p);
-            }
+            TestProject p = new TestProject(RandomString(5));
+            p.SetChlidren(GenerateClasses(p));
+            projects.Add(p);
             return projects;
         }
         public static IReadOnlyList<TestModel> GenerateClasses(TestProject project)
@@ -33,7 +30,7 @@ namespace ITI_UITest.Models
         public static IReadOnlyList<TestModel> GenerateMethods(TestClass @class)
         {
             List<TestMethod> methods = new List<TestMethod>();
-            for (int i = 0; i < 4; i++)
+            for (int i = 0; i < 6; i++)
             {
                 
                 if (i < 2)
@@ -42,9 +39,24 @@ namespace ITI_UITest.Models
                     methods.Add(m);
                     m.SetChlidren(GenerateCase(m));
                 }
-                else
+                else if (i == 2)
                 {
-                    TestMethod m = new TestMethod(@class, RandomString(8), true);
+                    TestMethod m = new TestMethod(@class, RandomString(8), true, null, "Console");
+                    methods.Add(m);
+                }
+                else if (i == 3)
+                {
+                    TestMethod m = new TestMethod(@class, RandomString(8), true, null, null);
+                    methods.Add(m);
+                }
+                else if (i == 4)
+                {
+                    TestMethod m = new TestMethod(@class, RandomString(8), false, "Errors", null);
+                    methods.Add(m);
+                }
+                else if (i == 5)
+                {
+                    TestMethod m = new TestMethod(@class, RandomString(8), false, "Errors", "Console");
                     methods.Add(m);
                 }
             }
@@ -58,9 +70,9 @@ namespace ITI_UITest.Models
             {
                 TestCase c;
                 if (i < 0)
-                    c = new TestCase(m, RandomString(5), false);
+                    c = new TestCase(m, RandomString(5), m.IsPassed == null ? (bool?)null : false);
                 else
-                    c = new TestCase(m, RandomString(5), true);
+                    c = new TestCase(m, RandomString(5), m.IsPassed == null ? (bool?)null : true);
                 cases.Add(c);
             }
             return cases;

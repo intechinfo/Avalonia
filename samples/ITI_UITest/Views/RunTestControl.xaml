@@ -1,0 +1,13 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+    <StackPanel Orientation="Vertical"
+                VerticalAlignment="center"
+                Margin="16">
+        <StackPanel Orientation="Horizontal"
+                    Spacing="20">
+            <Button Command="{Binding Start}">Start</Button>
+            <Button Command="{Binding Start}">Stop</Button>
+            <ProgressBar IsIndeterminate="{Binding IsRunning}" Maximum="100" Value="{Binding Value}"></ProgressBar>
+        </StackPanel>
+    </StackPanel>
+</UserControl>

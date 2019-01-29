@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 using Avalonia;
 using Avalonia.Logging.Serilog;
 using ITI_UITest.ViewModels;
@@ -10,7 +11,7 @@ namespace ITI_UITest
     {
         static void Main(string[] args)
         {
-            BuildAvaloniaApp().Start<MainWindow>(() => new MainWindowViewModel());
+            BuildAvaloniaApp().Start<MainWindow>(() => new MainWindowVM(args.First()));
         }
 
         public static AppBuilder BuildAvaloniaApp()

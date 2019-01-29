@@ -1,0 +1,14 @@
+﻿<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:control="clr-namespace:ITI_UITest.Views"
+             >
+    <TabControl Classes="sidebar" Name="Sidebar">
+        <TabItem Header="Console">
+            <TextBlock Text="{Binding Console}" />
+        </TabItem>
+        <TabItem Header="Errors And Failure">
+            <TextBlock Text="{Binding Errors}" />
+        </TabItem>
+    </TabControl>
+    
+</UserControl>

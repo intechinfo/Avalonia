@@ -1,17 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Avalonia;
+﻿using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Markup.Xaml;
-using ITI_UITest.Models;
 
 namespace ITI_UITest.Views
 {
-    public class MainView : UserControl
+    public class TopBarControl : UserControl
     {
-        string _dllPath;
-        public MainView()
+        public TopBarControl()
         {
             this.InitializeComponent();
         }

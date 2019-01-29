@@ -1,6 +1,13 @@
 ﻿<Window xmlns="https://github.com/avaloniaui"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:local="clr-namespace:ITI_UITest.Views"
+        xmlns:vm="clr-namespace:ITI_UITest.ViewModels"
         Title="ITI_UITest">
-    <local:MainView/>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="Open" Command="{Binding Open}"/>
+            <MenuItem Header="Close" Command="{Binding Close}"/>
+        </Menu>
+        <local:MainView DataContext="{Binding MainViewVM}"/>
+    </DockPanel>
 </Window>

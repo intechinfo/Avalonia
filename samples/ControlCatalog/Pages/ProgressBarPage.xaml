@@ -13,7 +13,7 @@
           <ProgressBar IsIndeterminate="True"/>
         </StackPanel>
         <ProgressBar Value="{Binding #vprogress.Value}" Orientation="Vertical" />
-        <ProgressBar Orientation="Vertical" IsIndeterminate="True" />
+        <ProgressBar Orientation="Vertical" IsIndeterminate="True" Maximum="100" Value="0"/>
       </StackPanel>
       <StackPanel Margin="16">
         <Slider Name="hprogress" Maximum="100" Value="40"/>
