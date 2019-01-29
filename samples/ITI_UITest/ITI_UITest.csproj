@@ -13,7 +13,6 @@
     <EmbeddedResource Include="Assets\*" />
   </ItemGroup>
   <ItemGroup>
-    <None Remove="Views\ConsoleControl.xaml" />
     <None Remove="Views\RunTestControl.xaml" />
     <None Remove="Views\TabControl.xaml" />
     <None Remove="Views\TopBarControl.xaml" />
@@ -40,9 +39,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\ConsoleControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
     <EmbeddedResource Update="Views\RunTestControl.xaml">
       <Generator>MSBuild:Compile</Generator>
     </EmbeddedResource>
