@@ -13,6 +13,9 @@ namespace ITI_UITest.Models
         }
         public override string Name => $"{Parent.Name}({base.Name})";
         public override bool? IsPassed => _isPassed;
-
+        public override string ToString()
+        {
+            return Parent.ToString();
+        }
     }
 }

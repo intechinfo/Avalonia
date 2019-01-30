@@ -1,22 +1,31 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using ITI_UITest.Models;
 
 namespace ITI_UITest.ViewModels
 {
-    public class TabControlVM
+    public class TabControlVM : INotifyPropertyChanged
     {
         UITestModel _model;
 
         public TabControlVM(UITestModel model)
         {
             _model = model;
-            Errors = model.Projects.First().GetErrorsResult();
-            Console = model.Projects.First().GetConsoleResult();
+            _model.ProjectUpdate += UpdateProperties;
         }
-        public string Errors { get; private set; }
-        public string Console { get; private set; }
+
+        private void UpdateProperties(object sender, EventArgs e)
+        {
+            PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(Errors)));
+            PropertyChanged?.Invoke(sender, new PropertyChangedEventArgs(nameof(Console)));
+        }
+
+        public string Errors => _model.Projects.First().GetErrorsResult();
+        public string Console => _model.Projects.First().GetConsoleResult();
+
+        public event PropertyChangedEventHandler PropertyChanged;
     }
 }

@@ -39,5 +39,11 @@ namespace ITI_UITest.Models
         {
             return _error;
         }
+        public int PassedCount(bool passed)
+        {
+            if(Children?.Count > 0)
+                return Children.Where(c => c.IsPassed == passed).Count();
+            return IsPassed == passed ? 1 : 0;
+        }
     }
 }

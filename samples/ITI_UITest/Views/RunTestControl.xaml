@@ -5,9 +5,10 @@
                 Margin="16">
         <StackPanel Orientation="Horizontal"
                     Spacing="20">
-            <Button Command="{Binding Start}">Start</Button>
-            <Button Command="{Binding Start}">Stop</Button>
+            <Button Command="{Binding StartCommand}">Start</Button>
+            <Button Command="{Binding StopCommand}">Stop</Button>
             <ProgressBar IsIndeterminate="{Binding IsRunning}" Maximum="100" Value="{Binding Value}"></ProgressBar>
+            <TextBlock Text="{Binding ResultString}"></TextBlock>
         </StackPanel>
     </StackPanel>
 </UserControl>

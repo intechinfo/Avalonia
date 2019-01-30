@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
@@ -12,12 +13,13 @@ namespace ITI_UITest.Models
         string _selectedTest;
         bool _isRunning;
         private bool _isFinish;
+        List<TestProject> _projects;
 
         public UITestModel(List<TestProject> projects)
         {
-            Projects = projects;
+            _projects = projects;
         }
-        public List<TestProject> Projects { get; }
+        public List<TestProject> Projects => _projects;
         public string SelectedTest
         {
             get => _selectedTest;
@@ -50,14 +52,17 @@ namespace ITI_UITest.Models
                 if (_isFinish != value)
                 {
                     if(value && _isRunning) throw new ArgumentException("Test can't be finished if test are still running");
-
                     _isFinish = value;
                     PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(IsFinish)));
                 }
             }
         }
 
+        public int FailedTest { get; internal set; }
+
         public event PropertyChangedEventHandler PropertyChanged;
+
+        public event EventHandler ProjectUpdate;
 
         public async Task<string> Run()
         {
@@ -65,16 +70,21 @@ namespace ITI_UITest.Models
             if (IsRunning)
                 return null;
             IsRunning = true;
-            Console.WriteLine($"Run : {SelectedTest}");
-            Thread.Sleep(5000);
-            IsFinish = true;
+            Update();
+            await Task.Run(() => Thread.Sleep(5000));
             IsRunning = false;
+            IsFinish = true;
             return "ok";
         }
         public void Stop()
         {
             IsRunning = false;
             Console.WriteLine("Stop");
+        }
+        public void Update()
+        {
+            _projects = DataGenerator.GenerateProject();
+            ProjectUpdate?.Invoke(this, EventArgs.Empty);
         }
     }
 }

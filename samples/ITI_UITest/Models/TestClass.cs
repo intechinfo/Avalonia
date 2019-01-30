@@ -11,6 +11,6 @@ namespace ITI_UITest.Models
             :base(parentProject, name)
         {
         }
-        public override bool? IsPassed => Children.Any(c => !c.IsPassed.HasValue) ? (bool?)null : !Children.Any(c => !c.IsPassed.Value);
+        public override bool? IsPassed => Children.All(c => !c.IsPassed.HasValue) ? (bool?)null : !Children.Where(c => c.IsPassed.HasValue).Any(c => !c.IsPassed.Value);
     }
 }
