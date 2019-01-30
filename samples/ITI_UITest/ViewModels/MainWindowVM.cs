@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Text;
 using Avalonia.Controls;
+using ITest.Runner;
 using ITI_UITest.Models;
 
 namespace ITI_UITest.ViewModels
@@ -43,7 +44,9 @@ namespace ITI_UITest.ViewModels
             if (string.IsNullOrWhiteSpace(DllPath)) throw new ArgumentNullException("DllPath should not be null");
             try
             {
-                UITestModel um = new UITestModel(DataGenerator.GenerateProject());
+                //ProjectManager pm = new ProjectManager(DllPath, DllPath.Remove(DllPath.Length - 4));
+                XMLConverter xml = new XMLConverter();
+                UITestModel um = xml.CreateUITestModel(@"‪Discovered.xml");
                 return um;
             }
             catch (Exception e)

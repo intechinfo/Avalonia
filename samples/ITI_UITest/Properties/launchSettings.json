@@ -2,7 +2,7 @@
     "profiles": {
         "Test": {
             "commandName": "Project",
-            "commandLineArgs": "toto"
+            "commandLineArgs": "‪E:\\Dev\\S8\\CoursAlgo\\Algo.Tests\\bin\\Debug\\Algo.Tests.dll"
         }
     }
 }

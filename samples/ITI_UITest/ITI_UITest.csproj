@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <OutputType>Exe</OutputType>
-    <TargetFrameworks>netcoreapp2.0</TargetFrameworks>
+    <TargetFrameworks>netcoreapp2.1</TargetFrameworks>
   </PropertyGroup>
   <ItemGroup>
     <Compile Update="**\*.xaml.cs">
@@ -11,11 +11,6 @@
       <SubType>Designer</SubType>
     </EmbeddedResource>
     <EmbeddedResource Include="Assets\*" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Remove="Views\RunTestControl.xaml" />
-    <None Remove="Views\TabControl.xaml" />
-    <None Remove="Views\TopBarControl.xaml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\packages\Avalonia\Avalonia.csproj" />
@@ -30,6 +25,9 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="ITest.Runner">
+      <HintPath>bin\Debug\netcoreapp2.0\ITest.Runner.dll</HintPath>
+    </Reference>
     <Reference Include="PresentationCore">
       <HintPath>C:\Program Files (x86)\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.6.1\PresentationCore.dll</HintPath>
     </Reference>
@@ -39,16 +37,15 @@
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Update="Views\RunTestControl.xaml">
+    <None Update="Views\RunTestControl.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\TabControl.xaml">
+    </None>
+    <None Update="Views\TabControl.xaml">
       <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\TopBarControl.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </EmbeddedResource>
+    </None>
   </ItemGroup>
+
+
 
   <Import Project="..\..\build\SampleApp.props" />
   <Import Project="..\..\build\ReferenceCoreLibraries.props" />

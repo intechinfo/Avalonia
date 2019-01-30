@@ -10,20 +10,28 @@ namespace ITI_UITest.Models
         private static IBrush GreenBrush => Brushes.Green;
         private static IBrush BlackBrush => Brushes.Black;
         private static IBrush RedBruch => Brushes.Red;
+        List<TestModel> _children = new List<TestModel>();
         public TestModel(TestModel parent, string name)
         {
             Parent = parent;
             Name = name;
         }
         public virtual string Name { get; }
-        public IReadOnlyList<TestModel> Children { get; private set; }
+        public IReadOnlyList<TestModel> Children { get => _children; }
         public TestModel Parent { get; }
         public virtual bool? IsPassed { get; private set; }
         public virtual void SetChlidren(IReadOnlyList<TestModel> children)
         {
             if (children == null)
                 throw new ArgumentNullException("children");
-            Children = children;
+            _children = new List<TestModel>();
+            _children.AddRange(children);
+        }
+        public virtual void AddChild(TestModel child)
+        {
+            if (_children == null)
+                _children = new List<TestModel>();
+            _children.Add(child);
         }
         public IBrush Color => !IsPassed.HasValue ? BlackBrush: GetColor(IsPassed.Value);
         IBrush GetColor(bool value) => value ? GreenBrush : RedBruch;

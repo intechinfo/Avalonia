@@ -3,7 +3,6 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using ITI_UITest.Commands;
 using ITI_UITest.Models;
 using ITI_UITest.ViewModels;
 
